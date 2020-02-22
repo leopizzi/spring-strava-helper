@@ -7,12 +7,14 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
 @org.springframework.context.annotation.Configuration
 @Log4j2
 public class Configuration {
     private WebDriver driver;
+    @Autowired
     private Environment env;
 
     public WebDriver getWebDriver() {
@@ -20,7 +22,7 @@ public class Configuration {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("enable-automation");
-//        options.addArguments("--headless");
+        options.addArguments("--headless");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-extensions");
